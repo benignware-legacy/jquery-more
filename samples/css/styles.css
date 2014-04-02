@@ -1,0 +1,4 @@
+*[data-more].loading {
+  background: url('../images/ajax-loader.gif') no-repeat 12px center;
+  padding-left: 32px;
+}

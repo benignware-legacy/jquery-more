@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    
+    <title>jquery-more</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="css/styles.css" rel="stylesheet">
+     
+    <script src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+    
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+    <script src="../src/jquery.more.js"></script>
+    
+    <script>
+       
+      $(document).ready(function() {
+        $(".result").more();
+      });
+        
+    </script>
+    
+    <style>
+      
+    </style>
+    
+  </head>
+  
+  <body>
+
+    <header class="subhead" id="overview">
+      <div class="container">
+        <h1>jquery-more</h1>
+        <p class="lead">Create a 'more'-button for loading next set of results into the page by ajax very easily
+        </p>
+      </div>
+    </header>
+    
+    <div class="container main">
+      
+      <div class="row">
+        <div class="col-md-6">
+          
+          <div class="result">
+          
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3 class="panel-title">Item #1</h3></div>
+              <div class="panel-body">
+                Lorem ipsum
+              </div>
+            </div>
+            
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3 class="panel-title">Item #2</h3></div>
+              <div class="panel-body">
+                Lorem ipsum
+              </div>
+            </div>
+            
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3 class="panel-title">Item #3</h3></div>
+              <div class="panel-body">
+                Lorem ipsum
+              </div>
+            </div>
+            
+            <a href="page2.html" class="btn btn-default" data-more>More</a>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </body>
+  
+</html>
