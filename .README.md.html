@@ -478,6 +478,7 @@ function setDocumentScrollTop(ypos)
   &lt;a href=&quot;page2.html&quot; class=&quot;btn btn-default&quot; data-more=&quot;.result&quot;&gt;More&lt;/a&gt;
 &lt;/div&gt;
 </code></pre> 
+<p>Place your button right after your results into the specified container. Do this for every page as long as further results exist. When the user hits the button, jquery-more will load the specified url, find content by the specified selector and appends it to the result container of the original document. Afterwards the button will be removed, assuming that there may be another one contained in the appended content. </p> 
 <h3> <a name="user-content-using-partials" class="anchor" href="..md.html#using-partials"><span class="octicon octicon-link"></span></a>Using partials</h3> 
 <p>In order to provide search engines with the original link, you should add your partial's url via data-attribute:</p> 
 <pre><code>&lt;a href=&quot;page2.html&quot; class=&quot;btn btn-default&quot; data-more=&quot;.result&quot; data-href=&quot;page2.part.html&quot;&gt;More&lt;/a&gt;

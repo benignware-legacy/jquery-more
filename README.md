@@ -36,6 +36,11 @@ $(function() {
 </div>
 ```
 
+Place your button right after your results into the specified container. 
+Do this for every page as long as further results exist.
+When the user hits the button, jquery-more will load the specified url, find content by the specified selector and appends it to the result container of the original document.
+Afterwards the button will be removed, assuming that there may be another one contained in the appended content. 
+
 ### Using partials
 
 In order to provide search engines with the original link, you should add your partial's url via data-attribute:
