@@ -131,4 +131,5 @@ $(function() {
 ```
 <a href="page2.html" class="btn btn-default" data-more>More</a>
 ```
-However, this won't work when using partials, because the selector can only be consistently reverse engineered as descendants of the document-element.
+However, this won't work when using partials, because the selector can only be consistently reverse engineered by accounting for all of its ancestors.
+
