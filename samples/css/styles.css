@@ -1,4 +1,53 @@
-*[data-more].loading {
-  background: url('../images/ajax-loader.gif') no-repeat 12px center;
-  padding-left: 32px;
+.icon-progress {
+  display: inline-block;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  position: relative;
+  top: 1px;
+  margin: -2px 0;
+  width: 16px;
+  height: 16px;
+}
+
+.icon-progress:before, 
+.icon-progress:after {
+  content: "";
+  display: block;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.icon-progress:before {
+  background: url('../images/ajax-loader_FFFFFF.gif') no-repeat center;
+  visibility: visible;
+}
+
+.icon-progress:after {
+  background: url('../images/ajax-loader_EBEBEB.gif') no-repeat center;
+  visibility: hidden;
+}
+
+a.btn .icon-progress {
+  display: none;
+}
+
+a.btn:hover .icon-progress:before, 
+a.btn:active .icon-progress:before, 
+a.btn:focus .icon-progress:before {
+  visibility: hidden;
+}
+
+a.btn:hover .icon-progress:after, 
+a.btn:active .icon-progress:after, 
+a.btn:focus .icon-progress:after {
+  visibility: visible;
+}
+
+a.btn.loading .icon-progress {
+  display: inline-block;
 }

@@ -8,7 +8,7 @@ Easily create an ajax-button to load next pages into a container
 
 ```
 $(function() {
-  $(".result").more();
+  $("body").more();
 });
 ```
 
@@ -32,14 +32,22 @@ $(function() {
       Lorem ipsum
     </div>
   </div>
-  <a href="page2.html" class="btn btn-default" data-more>More</a>
+  <a href="page2.html" class="btn btn-default" data-more=".result">More</a>
 </div>
 ```
 
-jquery-more uses <cite>reverse css-selector engineering</cite> of the plugin's instance element. 
-This way it's possible, to omit the explicit declaration of the container on the button itself, thus making it more convenient for the developer :-) 
+#### For your convenience...
+If you initialize the plugin on the result container, you can omit its declaration in the markup because jquery-more can resolve it by reverse selector engineering.
+```
+$(function() {
+  $(".result").more();
+});
+```
 
-However, this won't work when using partials, because the selector can only be reverse engineered from the document level.
+```
+<a href="page2.html" class="btn btn-default" data-more>More</a>
+```
+However, this won't work when using partials, because the selector can only be consistently reverse engineered as descendants of the document-element.
 
 
 ### Using partials
@@ -57,16 +65,72 @@ Also, in order to provide search engines with the original link, add your partia
 ### Customizing the loading state
 
 jquery-more adds a 'loading'-class to the triggering button while getting the content.
+
+Here's an example of how one could show an animated gif:
+
 ```
-<style>
-*[data-more].loading {
-  background: url('../images/ajax-loader.gif') no-repeat 12px center;
-  padding-left: 32px;
-}
-</style>
+<a href="page2.html" class="btn btn-default" data-more=".result"><i class="icon-progress"></i> More</a>
 ```
 
-You may customize the 'loading'-selector using the 'loadingClass'-option:
+```
+# css/styles.css
+.icon-progress {
+  display: inline-block;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  position: relative;
+  top: 1px;
+  margin: -2px 0;
+  width: 16px;
+  height: 16px;
+}
+
+.icon-progress:before, 
+.icon-progress:after {
+  content: "";
+  display: block;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.icon-progress:before {
+  background: url('../images/ajax-loader_FFFFFF.gif') no-repeat center;
+  visibility: visible;
+}
+
+.icon-progress:after {
+  background: url('../images/ajax-loader_EBEBEB.gif') no-repeat center;
+  visibility: hidden;
+}
+
+a.btn .icon-progress {
+  display: none;
+}
+
+a.btn:hover .icon-progress:before, 
+a.btn:active .icon-progress:before, 
+a.btn:focus .icon-progress:before {
+  visibility: hidden;
+}
+
+a.btn:hover .icon-progress:after, 
+a.btn:active .icon-progress:after, 
+a.btn:focus .icon-progress:after {
+  visibility: visible;
+}
+
+a.btn.loading .icon-progress {
+  display: inline-block;
+}
+```
+
+
+You may customize the name of 'loading'-class using the 'loadingClass'-option:
 ```
 $(function() {
   $(".result").more({
