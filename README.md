@@ -43,7 +43,7 @@ When the user hits the button, jquery-more will load the specified url, find con
 
 Afterwards the button will be removed, assuming that there may be another one contained in the appended content. 
 
-### Custom load actions
+### Load callback
 Register a callback to the load event using the ready-option:
 ```
 $(function() {
@@ -139,7 +139,7 @@ $(function() {
 });
 ```
 
-#### For your convenience...
+### For your convenience...
 If you initialize the plugin on the result container, you can omit its declaration in the markup because jquery-more can resolve it by reverse selector engineering.
 ```
 $(function() {

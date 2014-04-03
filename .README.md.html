@@ -481,7 +481,7 @@ function setDocumentScrollTop(ypos)
 <p>Place your button right after your results into the specified container. Do this for every page as long as further results exist.</p> 
 <p>When the user hits the button, jquery-more will load the specified url, find content by the specified selector and appends it to the result container of the original document.</p> 
 <p>Afterwards the button will be removed, assuming that there may be another one contained in the appended content. </p> 
-<h3> <a name="user-content-custom-load-actions" class="anchor" href="..md.html#custom-load-actions"><span class="octicon octicon-link"></span></a>Custom load actions</h3> 
+<h3> <a name="user-content-load-callback" class="anchor" href="..md.html#load-callback"><span class="octicon octicon-link"></span></a>Load callback</h3> 
 <p>Register a callback to the load event using the ready-option:</p> 
 <pre><code>$(function() {
   $(&quot;.result&quot;).more({
@@ -562,7 +562,7 @@ a.btn.loading .icon-progress {
   });
 });
 </code></pre> 
-<h4> <a name="user-content-for-your-convenience" class="anchor" href="..md.html#for-your-convenience"><span class="octicon octicon-link"></span></a>For your convenience...</h4> 
+<h3> <a name="user-content-for-your-convenience" class="anchor" href="..md.html#for-your-convenience"><span class="octicon octicon-link"></span></a>For your convenience...</h3> 
 <p>If you initialize the plugin on the result container, you can omit its declaration in the markup because jquery-more can resolve it by reverse selector engineering.</p> 
 <pre><code>$(function() {
   $(&quot;.result&quot;).more();
