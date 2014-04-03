@@ -36,28 +36,9 @@ $(function() {
 </div>
 ```
 
-#### For your convenience...
-If you initialize the plugin on the result container, you can omit its declaration in the markup because jquery-more can resolve it by reverse selector engineering.
-```
-$(function() {
-  $(".result").more();
-});
-```
-
-```
-<a href="page2.html" class="btn btn-default" data-more>More</a>
-```
-However, this won't work when using partials, because the selector can only be consistently reverse engineered as descendants of the document-element.
-
-
 ### Using partials
-When working with partials you should declare your container selector on button-markup using the 'data-more'-attribute: 
 
-```
-<a href="page2.part.html" class="btn btn-default" data-more=".result">More</a>
-```
-
-Also, in order to provide search engines with the original link, add your partial's url via data-attribute:
+In order to provide search engines with the original link, you should add your partial's url via data-attribute:
 ```
 <a href="page2.html" class="btn btn-default" data-more=".result" data-href="page2.part.html">More</a>
 ```
@@ -139,4 +120,15 @@ $(function() {
 });
 ```
 
+#### For your convenience...
+If you initialize the plugin on the result container, you can omit its declaration in the markup because jquery-more can resolve it by reverse selector engineering.
+```
+$(function() {
+  $(".result").more();
+});
+```
 
+```
+<a href="page2.html" class="btn btn-default" data-more>More</a>
+```
+However, this won't work when using partials, because the selector can only be consistently reverse engineered as descendants of the document-element.

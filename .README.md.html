@@ -478,20 +478,8 @@ function setDocumentScrollTop(ypos)
   &lt;a href=&quot;page2.html&quot; class=&quot;btn btn-default&quot; data-more=&quot;.result&quot;&gt;More&lt;/a&gt;
 &lt;/div&gt;
 </code></pre> 
-<h4> <a name="user-content-for-your-convenience" class="anchor" href="..md.html#for-your-convenience"><span class="octicon octicon-link"></span></a>For your convenience...</h4> 
-<p>If you initialize the plugin on the result container, you can omit its declaration in the markup because jquery-more can resolve it by reverse selector engineering.</p> 
-<pre><code>$(function() {
-  $(&quot;.result&quot;).more();
-});
-</code></pre> 
-<pre><code>&lt;a href=&quot;page2.html&quot; class=&quot;btn btn-default&quot; data-more&gt;More&lt;/a&gt;
-</code></pre> 
-<p>However, this won't work when using partials, because the selector can only be consistently reverse engineered as descendants of the document-element.</p> 
 <h3> <a name="user-content-using-partials" class="anchor" href="..md.html#using-partials"><span class="octicon octicon-link"></span></a>Using partials</h3> 
-<p>When working with partials you should declare your container selector on button-markup using the 'data-more'-attribute: </p> 
-<pre><code>&lt;a href=&quot;page2.part.html&quot; class=&quot;btn btn-default&quot; data-more=&quot;.result&quot;&gt;More&lt;/a&gt;
-</code></pre> 
-<p>Also, in order to provide search engines with the original link, add your partial's url via data-attribute:</p> 
+<p>In order to provide search engines with the original link, you should add your partial's url via data-attribute:</p> 
 <pre><code>&lt;a href=&quot;page2.html&quot; class=&quot;btn btn-default&quot; data-more=&quot;.result&quot; data-href=&quot;page2.part.html&quot;&gt;More&lt;/a&gt;
 </code></pre> 
 <h3> <a name="user-content-customizing-the-loading-state" class="anchor" href="..md.html#customizing-the-loading-state"><span class="octicon octicon-link"></span></a>Customizing the loading state</h3> 
@@ -560,6 +548,15 @@ a.btn.loading .icon-progress {
     loadingClass: 'loading'
   });
 });
-</code></pre>
+</code></pre> 
+<h4> <a name="user-content-for-your-convenience" class="anchor" href="..md.html#for-your-convenience"><span class="octicon octicon-link"></span></a>For your convenience...</h4> 
+<p>If you initialize the plugin on the result container, you can omit its declaration in the markup because jquery-more can resolve it by reverse selector engineering.</p> 
+<pre><code>$(function() {
+  $(&quot;.result&quot;).more();
+});
+</code></pre> 
+<pre><code>&lt;a href=&quot;page2.html&quot; class=&quot;btn btn-default&quot; data-more&gt;More&lt;/a&gt;
+</code></pre> 
+<p>However, this won't work when using partials, because the selector can only be consistently reverse engineered as descendants of the document-element.</p>
 </body>
 </html>
