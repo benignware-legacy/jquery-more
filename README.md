@@ -43,6 +43,18 @@ When the user hits the button, jquery-more will load the specified url, find con
 
 Afterwards the button will be removed, assuming that there may be another one contained in the appended content. 
 
+### Custom load actions
+Register a callback to the load event using the ready-option:
+```
+$(function() {
+  $(".result").more({
+    ready: function(content) {
+      console.log("content loaded: ", content);
+    }
+  });
+});
+```
+
 ### Using partials
 
 In order to provide search engines with the original link, you should add your partial's url via data-attribute:
