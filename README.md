@@ -59,7 +59,7 @@ $(function() {
 ```
 $(function() {
   $(".result").more({
-    noMoreResults: 'No more results.'
+    noResults: 'No more results.'
   });
 });
 ```
