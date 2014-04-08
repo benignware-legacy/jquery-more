@@ -9,24 +9,15 @@
   
   var pluginName = "more";
   
+  var buttonSelector = 'a[data-more]';
+  
   var defaults = {
-    selector: 'a[data-more]', 
     loadingClass: 'loading', 
+    noResults: '', 
     // callback
     success: function() {}
   };
-  
-  /*
-   * jquery-plugin 'getSelector' for reverse selector engineering
-   * http://stackoverflow.com/questions/2420970/how-can-i-get-selector-from-jquery-object/15623322#15623322
-   */ 
-  
-  // prevent name-clash
-  var _jQueryGetSelector = $.fn.getSelector;
-  !function(e,t){var n=function(e){var n=[];for(;e&&e.tagName!==t;e=e.parentNode){if(e.className){var r=e.className.split(" ");for(var i in r){if(r.hasOwnProperty(i)&&r[i]){n.unshift(r[i]);n.unshift(".")}}}if(e.id&&!/\s/.test(e.id)){n.unshift(e.id);n.unshift("#")}n.unshift(e.tagName);n.unshift(" > ")}return n.slice(1).join("")};e.fn.getSelector=function(t){if(true===t){return n(this[0])}else{return e.map(this,function(e){return n(e)})}}}(window.jQuery);
-  var jQueryGetSelector = $.fn.getSelector;
-  $.fn.getSelector = _jQueryGetSelector;
-
+ 
   /*
    * Parses a html-string into an entire html document
    * http://stackoverflow.com/questions/7474710/can-i-load-an-entire-html-document-into-a-document-fragment-in-internet-explorer
@@ -50,35 +41,97 @@
    */
   function MoreButton(element, options) {
     
-    var selector = options.selector;
+    var selector = buttonSelector;
+    
     $(element).on("click", function(e) {
+      
+      e.preventDefault();
+      
       var $target = $(e.target);
+      
       if (!$target.is(selector)) {
         $target = $target.parents(selector);
       };
+      
       if (!$target.is(selector)) return;
-      var contentSelector = $target.data('more') || jQueryGetSelector.call($(element), true);
-      $target.addClass(options.loadingClass);
-      var href = $target.data('href') || $target.prop('href');
-      $.ajax({
-        url: href, 
-        dataType: 'html', 
-        success: function (data) {
-          var doc = parseHTMLDocument(data);
-          var node = $(doc).find(contentSelector).get(0);
-          if (node) {
-            var $content = $(node.innerHTML);
-            $(contentSelector).append($content);
+      
+      var contentSelector = $target.data('more');
+      
+      if (contentSelector) {
+      
+        var href = $target.data('href') || $target.prop('href');
+        
+        var $contentContainer = $(contentSelector);
+        
+        $target.addClass(options.loadingClass);
+        
+        $.ajax({
+          url: href, 
+          dataType: 'html', 
+          success: function (data) {
+            
             $target.removeClass(options.loadingClass);
-            $target.remove();
-            if (options.ready) {
+            
+            var doc = parseHTMLDocument(data);
+            
+            var $button = $(doc).find("a[data-more='" + contentSelector + "']");
+            
+            var contentNode = $(doc).find(contentSelector).get(0);
+            
+            var removeButton = false;
+            
+            if ($button.length) {
+              
+              $target.prop('href', $button.prop('href'));
+              $target.attr('data-href', $button.attr('data-href'));
+              
+              if ($(contentNode).has($button).length) {
+                $target.insertAfter($button);
+                $button.remove();
+              }
+              
+            } else {
+              
+              if (options.noResults) {
+                // replace button with label
+                $('<span>' + options.noResults + "</span>").insertAfter($target);
+              }
+              removeButton = true;
+              
+              
+            }
+            
+            if (contentNode) {
+              
+              var $content = $(contentNode.innerHTML);
+              if ($contentContainer.has($target).length) {
+                // element is a child of content container, insert before target
+                $content.insertBefore($target);
+              } else {
+                // append to container
+                $contentContainer.append($content);
+              }
+
+              
+            }
+            
+            if (removeButton) {
+              // remove button
+              $target.remove();
+            }
+            
+            if ($content.length && options.ready) {
+              // exec callback
               options.ready.call(this, $content);
             }
+            
           }
-        }
-      });
+        });
+        
+      } else {
+        throw 'content selector has not been specified';
+      }
       
-      e.preventDefault();
       return false;
     });
     

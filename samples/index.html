@@ -20,7 +20,9 @@
     <script>
        
       $(document).ready(function() {
-        $("body").more();
+        $("body").more({
+          noResults: 'No results.'
+        });
       });
         
     </script>
@@ -69,13 +71,17 @@
               </div>
             </div>
             
-            <a href="page2.html" class="btn btn-default" data-more=".result"><i class="icon-progress"></i> More</a>
-            
           </div>
           
         </div>
       </div>
     </div>
+    
+    <footer>
+      <div class="container">
+        <a href="page2.html" class="btn btn-default" data-more=".result"><i class="icon-progress"></i> More</a>
+      </div>
+    </footer>
     
   </body>
   
