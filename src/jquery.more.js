@@ -45,8 +45,6 @@
     
     $(element).on("click", function(e) {
       
-      e.preventDefault();
-      
       var $target = $(e.target);
       
       if (!$target.is(selector)) {
@@ -54,6 +52,8 @@
       };
       
       if (!$target.is(selector)) return;
+      
+      e.preventDefault();
       
       var contentSelector = $target.data('more');
       
